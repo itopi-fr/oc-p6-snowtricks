@@ -32,6 +32,7 @@ class File
     private ?string $type = null;
 
     #[ORM\ManyToOne(inversedBy: 'media')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?Trick $trick = null;
 
     public function getId(): ?int
