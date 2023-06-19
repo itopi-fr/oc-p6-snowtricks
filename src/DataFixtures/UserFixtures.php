@@ -7,9 +7,18 @@ use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 class UserFixtures extends Fixture implements OrderedFixtureInterface
 {
+    private UserPasswordHasherInterface $userPasswordHasherInterface;
+
+    public function __construct (UserPasswordHasherInterface $userPasswordHasherInterface)
+    {
+        $this->userPasswordHasherInterface = $userPasswordHasherInterface;
+    }
+
     public function load(ObjectManager $manager): void
     {
         // -------------------------------------------------------------------------------------------------- User Admin
@@ -26,10 +35,13 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
 
         // User
         $user_admin = new User();
+
+
+
         $user_admin->setPseudo('admin')
             ->setEmail('md@itopi.fr')
-            ->setPass('admin')
-            ->setPassConfirm('admin')
+            ->setPassword($this->userPasswordHasherInterface->hashPassword($user_admin, "admin"))
+            ->setPasswordConfirm($this->userPasswordHasherInterface->hashPassword($user_admin, "admin"))
             ->setToken('admin')
             ->setRole('ROLE_ADMIN')
             ->setAvatarFile($adminAvatarFile->getId());
@@ -56,8 +68,8 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
             $user = new User();
             $user->setPseudo('user-' . $i)
                 ->setEmail('user' . $i . '@itopi.fr')
-                ->setPass('user' . $i)
-                ->setPassConfirm('user' . $i)
+                ->setPassword($this->userPasswordHasherInterface->hashPassword($user, 'user' . $i))
+                ->setPasswordConfirm($this->userPasswordHasherInterface->hashPassword($user, 'user' . $i))
                 ->setToken('user' . $i)
                 ->setRole('ROLE_USER')
                 ->setAvatarFile($userAvatarFile->getId());
@@ -74,4 +86,5 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
     {
         return 20;
     }
+
 }

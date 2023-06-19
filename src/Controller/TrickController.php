@@ -37,5 +37,14 @@ class TrickController extends AbstractController
         ]);
     }
 
+    #[Route('/trick/remove/{trickId}', name: 'app_trick_remove')]
+    public function remove($trickId): Response
+    {
+        return $this->render('trick/remove.html.twig', [
+            'controller_name' => 'TrickController',
+            'trick_id' => $trickId,
+        ]);
+    }
+
 
 }

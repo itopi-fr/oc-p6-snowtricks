@@ -4,9 +4,10 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -20,10 +21,10 @@ class User
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $pass = null;
+    private ?string $password = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $pass_confirm = null;
+    private ?string $passwordConfirm = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?File $avatarFile = null;
@@ -63,26 +64,26 @@ class User
         return $this;
     }
 
-    public function getPass(): ?string
+    public function getPassword(): ?string
     {
-        return $this->pass;
+        return $this->password;
     }
 
-    public function setPass(string $pass): self
+    public function setPassword(string $password): self
     {
-        $this->pass = $pass;
+        $this->password = $password;
 
         return $this;
     }
 
-    public function getPassConfirm(): ?string
+    public function getPasswordConfirm(): ?string
     {
-        return $this->pass_confirm;
+        return $this->passwordConfirm;
     }
 
-    public function setPassConfirm(string $pass_confirm): self
+    public function setPasswordConfirm(string $passwordConfirm): self
     {
-        $this->pass_confirm = $pass_confirm;
+        $this->passwordConfirm = $passwordConfirm;
 
         return $this;
     }
@@ -122,4 +123,5 @@ class User
 
         return $this;
     }
+
 }
