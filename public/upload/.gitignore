@@ -1,5 +1,0 @@
-public/upload/*
-public/upload/*.*
-!public/upload/DataFixtures
-!public/upload/DataFixtures/*
-!public/upload/DataFixtures/*.*

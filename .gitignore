@@ -23,3 +23,7 @@
 ###> PhpStorm ###
 .idea/
 .idea/code.iml
+
+# User-specific stuff:
+/public/upload/*
+!/public/upload/DataFixtures/
