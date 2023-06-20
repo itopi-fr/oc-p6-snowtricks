@@ -42,14 +42,14 @@ class ForumMessageFixtures extends Fixture implements OrderedFixtureInterface
                 'status' => 'published'
             ],
             [
-                'user' => $this->getReference('user-8'),
+                'user' => $this->getReference('user-1'),
                 'trick' => $this->getReference('stalefish'),
                 'content' => 'Mauris sit amet efficitur nulla, et dignissim ligula.',
                 'dateCreated' => $this->getReference('stalefish')->getDateCreated()->modify('+10 minutes'),
                 'status' => 'published'
             ],
             [
-                'user' => $this->getReference('user-10'),
+                'user' => $this->getReference('user-2'),
                 'trick' => $this->getReference('stalefish'),
                 'content' => 'Ut eget varius tellus. Praesent et leo sem. Nulla fringilla rhoncus elit, ut vehicula justo suscipit sed.',
                 'dateCreated' => $this->getReference('stalefish')->getDateCreated()->modify('+25 minutes'),

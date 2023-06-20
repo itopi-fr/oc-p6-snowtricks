@@ -1,0 +1,25 @@
+{% block nav %}
+    <nav class="navbar">
+        <span class="nav-elm"><a href="/">Home</a></span>&nbsp;|&nbsp;
+        <span class="nav-elm"><a href="/register">Register</a></span>&nbsp;|&nbsp;
+        <span class="nav-elm"><a href="/login">Login</a></span>&nbsp;|&nbsp;
+        <span class="nav-elm"><a href="/logout">Logout</a></span>&nbsp;|&nbsp;
+        <span class="nav-elm"><a href="/user">User Profile</a></span>
+    </nav>
+    <div>
+        {% if app.user %}
+            <p>Logged in as {{ app.user.pseudo }}</p>
+            <p>Roles =
+                {% for role in app.user.roles %}
+                    {{ role }}&nbsp;
+                {% endfor %}
+
+            </p>
+            {% if app.user.isVerified %}
+                <p>Account verified</p>
+            {% else %}
+                <p>Account not verified</p>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

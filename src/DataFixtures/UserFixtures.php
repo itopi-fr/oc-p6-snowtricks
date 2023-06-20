@@ -40,10 +40,11 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
 
         $user_admin->setPseudo('admin')
             ->setEmail('md@itopi.fr')
-            ->setPassword($this->userPasswordHasherInterface->hashPassword($user_admin, "admin"))
-            ->setPasswordConfirm($this->userPasswordHasherInterface->hashPassword($user_admin, "admin"))
+            ->setPassword($this->userPasswordHasherInterface->hashPassword($user_admin, "password"))
+            ->setPasswordConfirm($this->userPasswordHasherInterface->hashPassword($user_admin, "password"))
             ->setToken('admin')
-            ->setRole('ROLE_ADMIN')
+            ->setRoles(['ROLE_ADMIN'])
+            ->setIsVerified(true)
             ->setAvatarFile($adminAvatarFile->getId());
 
         $manager->persist($user_admin);
@@ -51,7 +52,7 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
         $this->addReference("user-admin", $user_admin);
 
         // ------------------------------------------------------------------------------------------------------- Users
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 3; $i++) {
 
             // Avatar file
             $userAvatarFile = new File();
@@ -68,10 +69,10 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
             $user = new User();
             $user->setPseudo('user-' . $i)
                 ->setEmail('user' . $i . '@itopi.fr')
-                ->setPassword($this->userPasswordHasherInterface->hashPassword($user, 'user' . $i))
-                ->setPasswordConfirm($this->userPasswordHasherInterface->hashPassword($user, 'user' . $i))
+                ->setPassword($this->userPasswordHasherInterface->hashPassword($user, 'password'))
+                ->setPasswordConfirm($this->userPasswordHasherInterface->hashPassword($user, 'password'))
                 ->setToken('user' . $i)
-                ->setRole('ROLE_USER')
+                ->setRoles(['ROLE_USER'])
                 ->setAvatarFile($userAvatarFile->getId());
 
             $manager->persist($user);
