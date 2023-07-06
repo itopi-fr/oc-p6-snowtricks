@@ -39,6 +39,37 @@ class TrickRepository extends ServiceEntityRepository
         }
     }
 
+    public function findOneTrickBySlugWithUser(string $slug): ?Trick
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT t, u
+            FROM App\Entity\Trick t
+            JOIN t.user u
+            WHERE t.slug = :slug'
+        )->setParameter('slug', $slug);
+
+        return $query->getOneOrNullResult();
+    }
+
+    public function findOneBySlugWithEverything(string $slug): ?Trick
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT t, u, c, m, f
+            FROM App\Entity\Trick t
+            JOIN t.user u
+            JOIN t.category c
+            JOIN t.media m
+            JOIN t.forumMessages f
+            WHERE t.slug = :slug'
+        )->setParameter('slug', $slug);
+
+        return $query->getOneOrNullResult();
+    }
+
 //    /**
 //     * @return Trick[] Returns an array of Trick objects
 //     */

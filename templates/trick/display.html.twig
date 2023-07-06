@@ -9,12 +9,11 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }} - Trick id to display = {{ trick_id }} ! ✅</h1>
-
-    This friendly message is coming from:
+    <h1>Trick detail : {{ trick.title }}</h1>
     <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Formations/OC/PHP-Symfony/P6 - Snowtricks - Symfony/root/oc-p6-snowtricks/src/Controller/TrickController.php'|file_link(0) }}">src/Controller/TrickController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Formations/OC/PHP-Symfony/P6 - Snowtricks - Symfony/root/oc-p6-snowtricks/templates/trick/display.html.twig'|file_link(0) }}">templates/trick/display.html.twig</a></code></li>
+        <li>Titre : {{ trick.title }}</li>
+        <li>Description : {{ trick.content }}</li>
+        <li>Utilisateur : {{ trick.user.pseudo }}</li>
     </ul>
 </div>
 {% endblock %}

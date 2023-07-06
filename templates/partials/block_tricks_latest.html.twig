@@ -1,0 +1,15 @@
+{% block tricks_latest %}
+<div class="tricks-latest">
+    <h2>Latest Tricks</h2>
+    <ul>
+        {% for trick in tricks %}
+        <li>
+            <a href="{{ path('trick_detail', { 'slug': trick.slug }) }}">
+{#                <img src="{{ asset('uploads/images/' ~ trick.image) }}" alt="{{ trick.title }}" />#}
+                <span>{{ trick.title }}</span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

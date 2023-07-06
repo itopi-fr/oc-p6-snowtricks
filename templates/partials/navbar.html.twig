@@ -1,10 +1,15 @@
 {% block nav %}
     <nav class="navbar">
         <span class="nav-elm"><a href="/">Home</a></span>&nbsp;|&nbsp;
-        <span class="nav-elm"><a href="/register">Register</a></span>&nbsp;|&nbsp;
-        <span class="nav-elm"><a href="/login">Login</a></span>&nbsp;|&nbsp;
-        <span class="nav-elm"><a href="/logout">Logout</a></span>&nbsp;|&nbsp;
-        <span class="nav-elm"><a href="/user">User Profile</a></span>
+
+        {% if app.user %}
+            <span class="nav-elm"><a href="/logout">Déconnexion</a></span>&nbsp;|&nbsp;
+            <span class="nav-elm"><a href="/user">Mon Profil</a></span>
+        {% else %}
+            <span class="nav-elm"><a href="/register">Register</a></span>&nbsp;|&nbsp;
+            <span class="nav-elm"><a href="/login">Login</a></span>&nbsp;|&nbsp;
+        {% endif %}
+
     </nav>
     <div>
         {% if app.user %}
@@ -18,7 +23,7 @@
             {% if app.user.isVerified %}
                 <p>Account verified</p>
             {% else %}
-                <p>Account not verified</p>
+                <div class="notice notice-bad">Votre compte n'est pas vérifié. Veuillez cliquer sur le lien envoyé par email.<br />Vous pouvez demander un nouvel email d'activation ici : (lien)</div>
             {% endif %}
         {% endif %}
     </div>

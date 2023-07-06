@@ -1,5 +1,19 @@
 .block-nav {
     background-color: #f2ecff;
     font-size: 1.2rem;
-    font-weight: bold;
+    margin: 5px;
+    padding: 10px;
+}
+
+.notice {
+    background-color: #f2ecff;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.notice.notice-bad {
+    background-color: #ffecec;
+    border-color: #d8d8d8;
+    color: #333;
 }
