@@ -15,12 +15,9 @@ class HomeController extends AbstractController
     public function index(TrickRepository $trickRepository): Response
     {
         $tricks = $trickRepository->findAll();
-        dump($tricks);
 
         // Hydrate the tricks with proper objects (user, category, forumMessages, media)
         foreach ($tricks as $trick) {
-            dump($trick->getSlug());
-            dump($trick);
             $trick = $trickRepository->findOneBySlugWithEverything($trick->getSlug());
             dump($trick);
         }

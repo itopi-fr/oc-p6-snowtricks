@@ -63,7 +63,7 @@ class TrickRepository extends ServiceEntityRepository
             JOIN t.user u
             JOIN t.category c
             JOIN t.media m
-            JOIN t.forumMessages f
+            LEFT JOIN t.forumMessages f
             WHERE t.slug = :slug'
         )->setParameter('slug', $slug);
 
